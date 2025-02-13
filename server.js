@@ -1,36 +1,21 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
-require('dotenv').config();
-// const express = require('express'); // common js
-
-// console.log("check env: ", process.env);
+const configViewEngine = require('./src/config/viewEngine');
+const webRoutes = require('./src/routes/web');
 
 const app = express(); // App cua express
 const port = process.env.PORT || 3001; // port cua App
 const hostname = process.env.HOST_NAME || "localhost";
 
 // config template engine
-app.set('views', './src/views');
-app.set('view engine', 'ejs');
-
-console.log(path.join(__dirname, '/src/public'));
-
-// config static files
-app.use(express.static(path.join(__dirname, '/src/public')));
+configViewEngine(app);
 
 // Khai báo route
-app.get('/', (req, res) => {
-    res.send('Hello World! and Nodemon')
-})
+app.use(webRoutes); // Tham số đầu tiên là route giả định
+// ví dụ 1: tham số 1 -> '/' thì vẫn dùng http://localhost:3000/manduong -> Vô bth
+// ví dụ 2: tham số 1 -> '/test' thì không vô được http://localhost:3000/manduong, mà phải vô http://localhost:3000/test/manduong
 
-app.get('/abc', (req, res) => {
-    console.log(req);
-    res.send('Check ABC!')
-})
-
-app.get('/manduong', (req, res) => {
-    res.render('sample.ejs');
-})
 
 app.listen(port, hostname, () => {
     console.log(`Example app listening on port ${port}`)
