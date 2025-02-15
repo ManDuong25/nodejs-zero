@@ -34,3 +34,27 @@
    background-color: #04AA6D;
    color: white;
  }
+
+ .form {
+  width: 500px;
+  margin: 20px auto;
+ }
+
+ .form .input-group {
+  display: flex;
+ }
+
+ .form .input-group input{
+  margin-left: 20px;
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  flex: 1;
+ }
+
+ .form button {
+  padding: 8px 12px;
+  border: none;
+  background-color: green;
+  display: block;
+  margin: 0 auto;
+ }

@@ -9,6 +9,10 @@ const app = express(); // App cua express
 const port = process.env.PORT || 3001; // port cua App
 const hostname = process.env.HOST_NAME || "localhost";
 
+//config req.body
+app.use(express.json()); // Used to parse JSON bodies
+app.use(express.urlencoded()); //Parse URL-encoded bodies
+
 // config template engine
 configViewEngine(app);
 
