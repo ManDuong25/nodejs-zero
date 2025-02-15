@@ -15,7 +15,17 @@ const getManDuongpage = (req, res) => {
 
 const postCreateUser = (req, res) => {
     console.log(req.body);
-    res.send("create a new user!");
+    let { email, name, city } = req.body;
+
+    connection.query(
+        `INSERT INTO Users (email, name, city) VALUES (?, ?, ?);`,
+        [email, name, city],
+        function (err, results) {
+            if (results) res.send("Created user succeed!");
+            else res.send("created user failed!");
+        }
+    );
+
 }
 
 module.exports = {
