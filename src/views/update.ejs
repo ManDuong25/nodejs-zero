@@ -28,6 +28,7 @@
                 <label for="">City</label>
                 <input value="<%=user?.city%>" name="city" id="city" placeholder="Nhap City" type="text">
             </div>
+            <input type="hidden" name="userId" value="<%=user?.id%>">
 
             <button type="submit">Save</button>
         </fieldset>

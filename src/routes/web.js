@@ -1,5 +1,5 @@
 const express = require('express');
-const { getHomepage, getABCpage, getManDuongpage, postCreateUser, getCreatepage, getUpdatepage } = require('../controllers/homeController');
+const { getHomepage, getABCpage, getManDuongpage, getCreatepage, getUpdatepage, postCreateUser, postUpdateUser } = require('../controllers/homeController');
 const router = express.Router();
 
 // router.Method('/route', handler);    
@@ -10,4 +10,6 @@ router.get('/create', getCreatepage)
 router.get('/update/:userId', getUpdatepage);
 
 router.post('/create', postCreateUser);
+router.post('/update/', postUpdateUser);
+
 module.exports = router;
