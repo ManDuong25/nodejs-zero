@@ -1,0 +1,37 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Create User</title>
+</head>
+
+<body>
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a class="active" href="/create">Create User</a>
+    </div>
+
+    <form class="form" action="/create" method="post">
+        <fieldset style="padding: 12px;">
+            <legend>Sign up</legend>
+            <div class="input-group">
+                <label for="">Email</label>
+                <input name="email" id="email" placeholder="Nhap Email" type="text">
+            </div>
+            <div class="input-group">
+                <label for="">Name</label>
+                <input name="name" id="name" placeholder="Nhap Name" type="text">
+            </div>
+            <div class="input-group">
+                <label for="">City</label>
+                <input name="city" id="city" placeholder="Nhap City" type="text">
+            </div>
+
+            <button type="submit">Save</button>
+        </fieldset>
+    </form>
+</body>
+
+</html>

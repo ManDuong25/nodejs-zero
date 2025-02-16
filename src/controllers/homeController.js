@@ -1,7 +1,9 @@
 const connection = require('../config/database');
 
-const getHomepage = (req, res) => {
+const getHomepage = async (req, res) => {
     return res.render('home.ejs');
+    let [results, fields] = await connection.query(`select * from Users`)
+    res.send(results);
 }
 
 const getABCpage = (req, res) => {
@@ -13,24 +15,40 @@ const getManDuongpage = (req, res) => {
     res.render('sample.ejs');
 }
 
-const postCreateUser = (req, res) => {
+const getCreatepage = (req, res) => {
+    res.render('create.ejs');
+}
+
+const postCreateUser = async (req, res) => {
     console.log(req.body);
     let { email, name, city } = req.body;
 
-    connection.query(
-        `INSERT INTO Users (email, name, city) VALUES (?, ?, ?);`,
-        [email, name, city],
-        function (err, results) {
-            if (results) res.send("Created user succeed!");
-            else res.send("created user failed!");
-        }
-    );
+    // // Cach 1: Su dung callback
+    // connection.query(
+    //     `INSERT INTO Users (email, name, city) VALUES (?, ?, ?);`,
+    //     [email, name, city],
+    //     function (err, results) {
+    //         if (results) res.send("Created user succeed!");
+    //         else res.send("created user failed!");
+    //     }
+    // );
 
+
+    // // Cach 2: Su dung promise
+    let [results, fields] = await connection.query(
+        `INSERT INTO Users (email, name, city) VALUES (?, ?, ?);`, [email, name, city]
+    );
+    // console.log("Check result: ", results);
+    if (results) res.send("Created user succeed!");
+    else res.send("created user failed!");
+
+    // let [results, fields] = await connection.query(`select * from Users`)
 }
 
 module.exports = {
     getHomepage,
     getABCpage,
     getManDuongpage,
+    getCreatepage,
     postCreateUser
 }
