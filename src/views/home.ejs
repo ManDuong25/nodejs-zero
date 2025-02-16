@@ -2022,33 +2022,40 @@
     </div>
 
     <div class="table-container">
-        <div class="title">List Users</div>
+        <%= JSON.stringify(listUsers) %>
+            <div class="title">List Users</div>
+            <table class="w3-table-all w3-hoverable">
+                <thead>
+                    <tr class="w3-light-grey">
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Jill</td>
+                    <td>Smith</td>
+                    <td>50</td>
+                    <td>50</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
 
-        <table class="w3-table-all w3-hoverable">
-            <thead>
-                <tr class="w3-light-grey">
-                    <th>ID</th>
-                    <th>Email</th>
-                    <th>Name</th>
-                    <th>City</th>
                 </tr>
-            </thead>
-            <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-            </tr>
-            <tr>
-                <td>Eve</td>
-                <td>Jackson</td>
-                <td>94</td>
-            </tr>
-            <tr>
-                <td>Adam</td>
-                <td>Johnson</td>
-                <td>67</td>
-            </tr>
-        </table>
+                <tr>
+                    <td>Eve</td>
+                    <td>Jackson</td>
+                    <td>94</td>
+                </tr>
+                <tr>
+                    <td>Adam</td>
+                    <td>Johnson</td>
+                    <td>67</td>
+                </tr>
+            </table>
     </div>
 
 </body>
