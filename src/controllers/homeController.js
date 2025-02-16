@@ -21,8 +21,8 @@ const getCreatepage = (req, res) => {
 
 const getUpdatepage = async (req, res) => {
     const userId = req.params.userId;
-    const result = await getUserById(userId);
-    return res.render('update.ejs', { user: result });
+    const user = await getUserById(userId);
+    return res.render('update.ejs', { user: user });
 }
 
 const postCreateUser = async (req, res) => {

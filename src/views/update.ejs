@@ -18,15 +18,15 @@
             <legend>Update</legend>
             <div class="input-group">
                 <label for="">Email</label>
-                <input value="<%=user[0].email%>" name="email" id="email" placeholder="Nhap Email" type="text">
+                <input value="<%=user?.email%>" name="email" id="email" placeholder="Nhap Email" type="text">
             </div>
             <div class="input-group">
                 <label for="">Name</label>
-                <input value="<%=user[0].name%>" name="name" id="name" placeholder="Nhap Name" type="text">
+                <input value="<%=user?.name%>" name="name" id="name" placeholder="Nhap Name" type="text">
             </div>
             <div class="input-group">
                 <label for="">City</label>
-                <input value="<%=user[0].city%>" name="city" id="city" placeholder="Nhap City" type="text">
+                <input value="<%=user?.city%>" name="city" id="city" placeholder="Nhap City" type="text">
             </div>
 
             <button type="submit">Save</button>
