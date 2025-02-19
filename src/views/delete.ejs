@@ -1,0 +1,30 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Edit User</title>
+</head>
+
+<body>
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/create">Delete A User</a>
+    </div>
+
+    <form class="form" action="/delete-user" method="post">
+        <fieldset style="padding: 12px;">
+            <legend>Delete</legend>
+            <div class="input-group">
+                <label for="">Are you sure want to delete this user with Email:</label>
+                <input value="<%=user?.email%>" name="email" id="email" placeholder="Nhap Email" type="text">
+            </div>
+
+            <input type="hidden" name="userId" value="<%=user?.id%>">
+            <button type="submit">Confirm</button>
+        </fieldset>
+    </form>
+</body>
+
+</html>

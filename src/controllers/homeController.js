@@ -1,5 +1,5 @@
 const connection = require('../config/database');
-const { getAllUsers, getUserById, updateUserById } = require('../services/CRUDService');
+const { getAllUsers, getUserById, updateUserById, deleteUserById } = require('../services/CRUDService');
 
 const getHomepage = async (req, res) => {
     let results = await getAllUsers();
@@ -28,27 +28,11 @@ const getUpdatepage = async (req, res) => {
 const postCreateUser = async (req, res) => {
     console.log(req.body);
     let { email, name, city } = req.body;
-
-    // // Cach 1: Su dung callback
-    // connection.query(
-    //     `INSERT INTO Users (email, name, city) VALUES (?, ?, ?);`,
-    //     [email, name, city],
-    //     function (err, results) {
-    //         if (results) res.send("Created user succeed!");
-    //         else res.send("created user failed!");
-    //     }
-    // );
-
-
-    // // Cach 2: Su dung promise
     let [results, fields] = await connection.query(
         `INSERT INTO Users (email, name, city) VALUES (?, ?, ?);`, [email, name, city]
     );
-    // console.log("Check result: ", results);
     if (results) res.send("Created user succeed!");
     else res.send("created user failed!");
-
-    // let [results, fields] = await connection.query(`select * from Users`)
 }
 
 const postUpdateUser = async (req, res) => {
@@ -58,6 +42,18 @@ const postUpdateUser = async (req, res) => {
     res.redirect('/');
 }
 
+const postDeleteUser = async (req, res) => {
+    let userId = req.params.userId;
+    let user = await getUserById(userId);
+    return res.render('delete.ejs', { user: user });
+}
+
+const postHandleRemoveUser = async (req, res) => {
+    let userId = req.body.userId;
+    let results = await deleteUserById(userId);
+    res.redirect("/");
+}
+
 module.exports = {
     getHomepage,
     getABCpage,
@@ -65,5 +61,7 @@ module.exports = {
     getCreatepage,
     getUpdatepage,
     postCreateUser,
-    postUpdateUser
+    postUpdateUser,
+    postDeleteUser,
+    postHandleRemoveUser
 }
