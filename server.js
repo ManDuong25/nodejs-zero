@@ -4,7 +4,6 @@ const path = require("path");
 const configViewEngine = require("./src/config/viewEngine");
 const webRoutes = require("./src/routes/web");
 const connection = require("./src/config/database");
-const mongoose = require("mongoose");
 
 const app = express(); // App cua express
 const port = process.env.PORT || 3001; // port cua App
@@ -22,14 +21,8 @@ app.use(webRoutes); // Tham số đầu tiên là route giả định
 // ví dụ 1: tham số 1 -> '/' thì vẫn dùng http://localhost:3000/manduong -> Vô bth
 // ví dụ 2: tham số 1 -> '/test' thì không vô được http://localhost:3000/manduong, mà phải vô http://localhost:3000/test/manduong
 
-const kittySchema = new mongoose.Schema({
-  // 1 Collection (tuơng ứng với một table)
-  name: String,
-});
-const Kitten = mongoose.model("Kitten", kittySchema);
+// cấu trúc model(<Tên collection>, <schema~data shape>);
 
-const cat = new Kitten({ name: "Man Duong's cat" });
-cat.save();
 // Test connection
 (async () => {
   try {
