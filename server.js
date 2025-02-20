@@ -22,8 +22,14 @@ app.use(webRoutes); // Tham số đầu tiên là route giả định
 // ví dụ 2: tham số 1 -> '/test' thì không vô được http://localhost:3000/manduong, mà phải vô http://localhost:3000/test/manduong
 
 // Test connection
-connection();
 
-app.listen(port, hostname, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+(async () => {
+  try {
+    await connection();
+    app.listen(port, hostname, () => {
+      console.log(`Backend zero app listening on port ${port}`);
+    });
+  } catch (error) {
+    console.log(">>>> ERROR CONNECT TO DB: ", error);
+  }
+})();
