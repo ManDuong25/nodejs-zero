@@ -61,13 +61,21 @@ const postUpdateUser = async (req, res) => {
 
 const postDeleteUser = async (req, res) => {
   let userId = req.params.userId;
-  let user = await getUserById(userId);
+  let user = await User.findById(userId).exec();
   return res.render("delete.ejs", { user: user });
 };
 
 const postHandleRemoveUser = async (req, res) => {
   let userId = req.body.userId;
-  let results = await deleteUserById(userId);
+  const result = await User.deleteOne({ _id: userId });
+  // console.log(result);
+  if (result && result.deletedCount === 1) {
+    // Xoa thanh cong
+  }
+
+  if (result && result.deletedCount === 0) {
+    // Xoa that bai
+  }
   res.redirect("/");
 };
 

@@ -3,6 +3,8 @@ const express = require("express");
 const path = require("path");
 const configViewEngine = require("./src/config/viewEngine");
 const webRoutes = require("./src/routes/web");
+const apiRoutes = require("./src/routes/api");
+
 const connection = require("./src/config/database");
 
 const app = express(); // App cua express
@@ -21,7 +23,7 @@ app.use(webRoutes); // Tham số đầu tiên là route giả định
 // ví dụ 1: tham số 1 -> '/' thì vẫn dùng http://localhost:3000/manduong -> Vô bth
 // ví dụ 2: tham số 1 -> '/test' thì không vô được http://localhost:3000/manduong, mà phải vô http://localhost:3000/test/manduong
 
-// cấu trúc model(<Tên collection>, <schema~data shape>);
+app.use("/v1/api/", apiRoutes);
 
 // Test connection
 (async () => {
